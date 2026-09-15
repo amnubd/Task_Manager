@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A simple task manager board for organizing work by status.">
+	<title>Task Manager</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="app-shell">
+		<header class="page-header">
+			<div>
+				<p class="eyebrow">AMNUBD / TASK MANAGER</p>
+				<h1>Keep the work moving.</h1>
+				<p class="header-copy">Capture the next action, give it an owner, and move it across the board.</p>
+			</div>
+			<button class="button button-primary" id="add-task-button" type="button"><span aria-hidden="true">+</span> Add task</button>
+		</header>
+
+		<section class="board" aria-label="Task board">
+			<section class="column column-pending" data-status="Pending">
+				<header class="column-header"><div><span class="status-dot"></span><h2>Pending</h2></div><span class="task-count" data-count="Pending">0</span></header>
+				<div class="task-list" data-list="Pending"></div>
+			</section>
+			<section class="column column-progress" data-status="In Progress">
+				<header class="column-header"><div><span class="status-dot"></span><h2>In Progress</h2></div><span class="task-count" data-count="In Progress">0</span></header>
+				<div class="task-list" data-list="In Progress"></div>
+			</section>
+			<section class="column column-completed" data-status="Completed">
+				<header class="column-header"><div><span class="status-dot"></span><h2>Completed</h2></div><span class="task-count" data-count="Completed">0</span></header>
+				<div class="task-list" data-list="Completed"></div>
+			</section>
+		</section>
+	</main>
+
+	<dialog class="task-dialog" id="task-dialog" aria-labelledby="dialog-title">
+		<form class="task-form" id="task-form">
+			<div class="dialog-header"><div><p class="eyebrow" id="dialog-kicker">NEW ENTRY</p><h2 id="dialog-title">Add a task</h2></div><button class="icon-button" id="close-dialog-button" type="button" aria-label="Close dialog">&times;</button></div>
+			<input id="task-id" type="hidden">
+			<label for="task-title">Title <span aria-hidden="true">*</span></label>
+			<input id="task-title" name="title" type="text" maxlength="80" placeholder="What needs to happen?" required>
+			<label for="task-description">Description</label>
+			<textarea id="task-description" name="description" rows="4" maxlength="300" placeholder="Add useful context or the next action..."></textarea>
+			<div class="form-row"><div><label for="task-assignee">Assigned to</label><input id="task-assignee" name="assignee" type="text" maxlength="40" placeholder="Name or team"></div><div><label for="task-status">Status</label><select id="task-status" name="status"><option>Pending</option><option>In Progress</option><option>Completed</option></select></div></div>
+			<p class="form-error" id="form-error" role="alert"></p>
+			<div class="dialog-actions"><button class="button button-quiet" id="cancel-dialog-button" type="button">Cancel</button><button class="button button-primary" type="submit">Save task</button></div>
+		</form>
+	</dialog>
+	<script src="script.js"></script>
+</body>
+</html>
